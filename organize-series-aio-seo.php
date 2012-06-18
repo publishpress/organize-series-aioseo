@@ -116,6 +116,10 @@ function orgseries_aio_seo_output() {
 	global $orgseries, $orgser_aio_seo_domain;
 	$org_opt = $orgseries->settings;
 	$org_name = 'org_series_options';
+	//setup defaults for initial activation
+	$org_opt['post_series_format'] = !isset($org_opt['post_series_format'] ) ? '' : $org_opt['post_series_format'];
+	$org_opt['use_no_index_series_archives'] = !isset($org_opt['use_no_index_series_archives'] ) ? 0 : $org_opt['use_no_index_series_archives'];
+	$org_opt['use_series_for_meta_keywords'] = !isset($org_opt['use_series_for_meta_keywords'] ) ? 0 : $org_opt['use_series_for_meta_keywords'];
 	?>
 		<p><strong><?php _e('Post Series Format: ', $orgser_aio_seo_domain ); ?></strong><input name="<?php echo $org_name; ?>[post_series_format]" id="post_series_format" type="text" value="<?php echo htmlspecialchars($org_opt['post_series_format']); ?>" style="width:300px;" /> <br />
 		<small><em><?php _e("The following macros are supported: <ul><li>%blog_title% - Your blog title (sometimes included by default by your theme)</li><li>%blog_description% - Your blog description</li><li>%series_seo_title% - The original title of the series</li><li>%series_seo_description% - The description of the series</li></ul>", $orgser_aio_seo_domain); ?></em></small></p>
