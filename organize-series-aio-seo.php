@@ -62,10 +62,8 @@ add_action('get_header', 'maybe_remove_aio_wp_head');
 * ALL FUNCTIONS
 */
 function orgseries_aio_seo_register_textdomain() {
-	$orgser_aio_seo_domain = 'organize-series-aio-seo';
-	global $orgser_aio_seo_domain;
 	$dir = basename(dirname(__FILE__)).'/lang';
-	load_plugin_textdomain($orgser_aio_seo_domain, false, $dir);
+	load_plugin_textdomain('organize-series-aio-seo', false, $dir);
 }
 
 function orgseries_check_organize_series_aio_seo() {
@@ -87,14 +85,12 @@ function orgseries_organize_series_aio_seo_deactivate() {
 }
 
 function orgseries_organize_series_aio_seo_warning() {
-	global $orgser_aio_seo_domain;
-	$msg = '<div id="wpp-message" class="error fade"><p>'.__('The <strong>All in One SEO</strong> addon for Organize Series requires the Organize Series plugin to be installed and activated in order to work.  The addon won\'t activate until this condition is met.', $orgser_aio_seo_domain).'</p></div>';
+	$msg = '<div id="wpp-message" class="error fade"><p>'.__('The <strong>All in One SEO</strong> addon for Organize Series requires the Organize Series plugin to be installed and activated in order to work.  The addon won\'t activate until this condition is met.', 'organize-series-aio-seo').'</p></div>';
 	echo $msg;
 }
 
 function orgseries_aio_seo_warning() {
-	global $orgser_aio_seo_domain;
-	$msg = '<div id="wpp-message" class="error fade"><p>'.__('The <strong>All in One SEO</strong> addon for Organize Series requires the <a href="http://wordpress.org/extend/plugins/all-in-one-seo-pack/">All In One SEO pack</a> plugin to be installed and activated in order to work.  The addon won\'t activate until this condition is met.', $orgser_aio_seo_domain).'</p></div>';
+	$msg = '<div id="wpp-message" class="error fade"><p>'.__('The <strong>All in One SEO</strong> addon for Organize Series requires the <a href="http://wordpress.org/extend/plugins/all-in-one-seo-pack/">All In One SEO pack</a> plugin to be installed and activated in order to work.  The addon won\'t activate until this condition is met.', 'organize-series-aio-seo').'</p></div>';
 	echo $msg;
 }
 
@@ -113,7 +109,6 @@ function orgseries_aio_seo_options_validate($newinput, $input) {
 }
 
 function orgseries_aio_seo_output() {
-	global $orgseries, $orgser_aio_seo_domain;
 	$org_opt = $orgseries->settings;
 	$org_name = 'org_series_options';
 	//setup defaults for initial activation
@@ -121,14 +116,14 @@ function orgseries_aio_seo_output() {
 	$org_opt['use_no_index_series_archives'] = !isset($org_opt['use_no_index_series_archives'] ) ? 0 : $org_opt['use_no_index_series_archives'];
 	$org_opt['use_series_for_meta_keywords'] = !isset($org_opt['use_series_for_meta_keywords'] ) ? 0 : $org_opt['use_series_for_meta_keywords'];
 	?>
-		<p><strong><?php _e('Post Series Format: ', $orgser_aio_seo_domain ); ?></strong><input name="<?php echo $org_name; ?>[post_series_format]" id="post_series_format" type="text" value="<?php echo htmlspecialchars($org_opt['post_series_format']); ?>" style="width:300px;" /> <br />
-		<small><em><?php _e("The following macros are supported: <ul><li>%blog_title% - Your blog title (sometimes included by default by your theme)</li><li>%blog_description% - Your blog description</li><li>%series_seo_title% - The original title of the series</li><li>%series_seo_description% - The description of the series</li></ul>", $orgser_aio_seo_domain); ?></em></small></p>
+		<p><strong><?php _e('Post Series Format: ', 'organize-series-aio-seo' ); ?></strong><input name="<?php echo $org_name; ?>[post_series_format]" id="post_series_format" type="text" value="<?php echo htmlspecialchars($org_opt['post_series_format']); ?>" style="width:300px;" /> <br />
+		<small><em><?php _e("The following macros are supported: <ul><li>%blog_title% - Your blog title (sometimes included by default by your theme)</li><li>%blog_description% - Your blog description</li><li>%series_seo_title% - The original title of the series</li><li>%series_seo_description% - The description of the series</li></ul>", 'organize-series-aio-seo'); ?></em></small></p>
 		
-		<p><input name="<?php echo $org_name; ?>[use_no_index_series_archives]" id="use_no_index_series_archives" type="checkbox" value="1" <?php checked('1', $org_opt['use_no_index_series_archives']); ?> /> <?php _e('Use noindex for Series Archive Pages', $orgser_aio_seo_domain); ?><br />
-		<small><em><?php _e('Check this for excluding series archive pages from being crawled. Useful for avoiding duplicate content.', $orgser_aio_seo_domain); ?></em></small></p>
+		<p><input name="<?php echo $org_name; ?>[use_no_index_series_archives]" id="use_no_index_series_archives" type="checkbox" value="1" <?php checked('1', $org_opt['use_no_index_series_archives']); ?> /> <?php _e('Use noindex for Series Archive Pages', 'organize-series-aio-seo'); ?><br />
+		<small><em><?php _e('Check this for excluding series archive pages from being crawled. Useful for avoiding duplicate content.', 'organize-series-aio-seo'); ?></em></small></p>
 		
-		<p><input name="<?php echo $org_name; ?>[use_series_for_meta_keywords]" id="use_series_for_meta_keywords" type="checkbox" value="1" <?php checked('1', $org_opt['use_series_for_meta_keywords']); ?> /> <?php _e('Use Series for META keywords', $orgser_aio_seo_domain); ?><br />
-		<small><em><?php _e('Check this if you want your series for a given post used as the META keywords for this post (in addition to any keywords and tags you specify on the post edit page).', $orgser_aio_seo_domain); ?></em></small></p>
+		<p><input name="<?php echo $org_name; ?>[use_series_for_meta_keywords]" id="use_series_for_meta_keywords" type="checkbox" value="1" <?php checked('1', $org_opt['use_series_for_meta_keywords']); ?> /> <?php _e('Use Series for META keywords', 'organize-series-aio-seo'); ?><br />
+		<small><em><?php _e('Check this if you want your series for a given post used as the META keywords for this post (in addition to any keywords and tags you specify on the post edit page).', 'organize-series-aio-seo'); ?></em></small></p>
 	<?php
 }
 
