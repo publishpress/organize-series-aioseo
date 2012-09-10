@@ -2,7 +2,7 @@
 /*
 Plugin Name: Organize Series AIO SEO Integration
 Description: This addon integrates Organize Series with the <a href="http://wordpress.org/extend/plugins/all-in-one-seo-pack/">All In One SEO pack</a> by <a href="http://twitter.com/michaeltorbert/">Michael Torbert</a>.  
-Version: 1.3
+Version: 1.3.1
 Author: Darren Ethier
 Author URI: http://organizeseries.com
 */
